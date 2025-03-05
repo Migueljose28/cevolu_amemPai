@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <title>Login</title>
+    <link rel="shortcut icon" type="imagex/png" href="static/img/logo.png">
+  
+</head>
+<body>
+    <div class="main-login">
+        <div class="left-login">
+            <img src="/static/img/logo.png" class="left-login-img" alt="logo">
+        </div>
+        <!--card info de login-->
+       
+        <div class="right-login">
+            <form id="loginForm">
+            <div class="card-login">
+                 <h1> Login </h1>
+                    <!--<p style="color:white">{{mensagem}}</p>-->
+                    <div class="textfield">
+                       
+                        <input type="text" name="nomeForm" id="nomeForm" placeholder="Usuário">
+                    </div>
+                    <div class="textfield">
+                        <input type="password" name="senhaForm" id="senhaForm" placeholder="Senha">
+                    </div>
+                    <button  class="btn-login" type="submit">Login</button>
+                    
+                   <a style="color:white" href="/templates/registrar.html">Registrar</a>
+                </form>
+            </div>
+               
+                
+        </div>
+    </div>
+</body>
+<script src="/static/js/login.js">
+    
+</script>
+</html>

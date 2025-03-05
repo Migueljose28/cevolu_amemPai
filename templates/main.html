@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de Taleto - C´Evolu</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <!--<link rel="shortcut icon" type="imagex/png" href="/static/img/logo.png">-->
+    
+</head>
+<header>
+<nav>
+    <button id="logout" class="logout"><a href="/logout">sair</a></button>
+    <h2>Olá &nbsp<span id="nomeUsuario"></span></h2>
+    <section>
+    <input id="valor" type="number">
+    <button id="commit">Pesquisar</button>
+    </section>
+   
+</nav>
+</header>
+
+<body>
+       
+   
+   
+<div class="pdf-container" style="width: 90%; height: 80%;">
+    <canvas id="pdf-canvas" width="500" height="500">
+        
+    </canvas>
+</div>
+
+<div class="menu_botoes">
+
+    <button id="decrementar">&lt;</button>
+<p style="color:white"  id="displayValor">0</p>
+<button id="incrementar">&gt;</button>
+
+</div>
+
+<script src="/static/js/scripts.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+body{
+   
+    background-color: #201b2c;
+    margin: 0;
+    padding: 0;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    background-color: #2b2636;
+    width: 100%;
+    height: auto;
+    padding: 20px 0px ;
+    justify-content: space-around;
+}
+
+input{
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 12pt;
+    outline: none;
+    box-sizing: border-box;
+}
+
+
+h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2vw;
+    margin: 0;
+    padding: 0;
+}
+a{
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+a :hover{
+    color:  #91b72e;
+}
+
+.pdf-container {
+    width: 100%;
+    overflow: auto; /* Barra de rolagem quando necessário */
+    border: 1px solid #91b72e; /* Optional: borda para o contêiner */
+    box-shadow: 0px 1px 30px black;
+    margin: auto;
+}
+
+
+/* Estilos para o canvas */
+#pdf-canvas {
+margin: 0 auto;
+width: 100%;
+
+}
+
+.menu_botoes{
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    margin: 10px;
+    z-index: 1;
+}
+
+button{
+    background-color: #91b72e;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 800;
+    letter-spacing: 3px;
+    outline: none;
+    box-shadow: 0px 10px 40px -12px #00ff8052;
+    text-transform: uppercase;
+}
+
+.logout{
+    background-color: #91b72e;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 800;
+    letter-spacing: 3px;
+    outline: none;
+    box-shadow: 0px 10px 40px -12px #00ff8052;
+    text-transform: uppercase;
+
+}
+
+
+
+
+@media (min-width: 768) and (max-width: 2000px) {
+    #pdf-canvas {
+        width: 80%;  
+    }
+}
+
+/* Para telas pequenas: tablets e celulares em modo paisagem */
+@media (max-width: 767px) {
+    nav{
+        display: flex;
+        font-size:12px;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+  nav > section{
+    display: flex;
+    flex-direction: column;
+    flex-direction: end;
+  }
+
+nav > section > button{
+    font-size: 10px;
+    width: 50%;
+    
+}
+
+h2{
+    display:none;
+}
+
+
+
+
+
+}
+
+
