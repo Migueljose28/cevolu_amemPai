@@ -12,7 +12,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     senha = document.getElementById("senhaForm").value;
     number = 3
     
-       const response = await fetch("https://rowan-prickle-fenugreek.glitch.me/login", {
+       const response = await fetch("http://127.0.0.1:8000/login", {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',  // Indicando que estamos enviando JSON

@@ -2,55 +2,36 @@ from fastapi import FastAPI,  Depends, HTTPException, Query
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from sqlmodel import Field, Session, SQLModel, create_engine, select
-from typing import Annotated
+
+from sqlmodel import Session, SQLModel
+from db import  get_db, engine
+from models import UsuarioCreate
+
 
 
 class User(BaseModel):
     nomeForm: str
     senhaForm: str
 
-class UsuarioCreate(SQLModel, table=True):
-    id: int |  None = Field(default=None, primary_key=True)
-    usuario: str = Field(index=True)
-    email: str = Field(index=True)
-    telefone: str = Field(index=True)
-    cpf_cnpj: str = Field(index=True)
-    senha: str = Field(index=True)
-
-
 class Token(BaseModel):
     access_token: str
     token_type: str
 
 
-
-sqlite_file_name = "database.db"
-sqlite_url = f"sqlite:///{sqlite_file_name}"
-
-connect_args = {"check_same_thread": False}
-engine = create_engine(sqlite_url, connect_args=connect_args)
-
-def create_db_and_tables():
-    SQLModel.metadata.create_all(engine)
-
-# armazena os objetos na memória e acompanha as alterações necessárias nos dados
-def get_session():
-    with Session(engine) as session:
-        yield session
-SessionDep = Annotated[Session, Depends(get_session)]
-
-
 app = FastAPI()
+def init_db():
+    SQLModel.metadata.create_all(bind=engine)
+
 @app.on_event("startup")
 def on_startup():
-    create_db_and_tables()
+    init_db()
+
 
 # Configurando CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Permite todas as origens. Para produção, você pode restringir para domínios específicos.
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],  # Permite todos os métodos HTTP
     allow_headers=["*"],  # Permite todos os cabeçalhos
 )
@@ -74,24 +55,19 @@ def get_redirect():
 
 #Verficando usuario
 @app.post("/login/")
-async def verificar_user( user: User, session : SessionDep):
+async def verificar_user(user: User, session: Session = Depends(get_db)):
     if user.nomeForm is not None and user.senhaForm is not None:
-        teste = session.query(UsuarioCreate).filter(user.nomeForm == UsuarioCreate.usuario).first()
-        teste2 = session.query(UsuarioCreate).filter(user.senhaForm == UsuarioCreate.senha).first()
-        if (teste):
-            if (teste2):
+        teste = session.query(UsuarioCreate).filter(UsuarioCreate.usuario == user.nomeForm).first()
+        teste2 = session.query(UsuarioCreate).filter(UsuarioCreate.senha == user.senhaForm).first()
+        if teste:
+            if teste2:
                 return JSONResponse(content={"redirect_url": "http://127.0.0.1:5500/templates/main.html", "user": user.nomeForm})
             else:
                 return {"mensagem": "Senha incorreta"}
         else:
-            return {"mensagem":"Usuario inexistente"}
+            return {"mensagem": "Usuário inexistente"}
     else:
-        return {"mensagem":"Os Campos estão vazios"}
-
-
-
-
-
+        return {"mensagem": "Os Campos estão vazios"}
 
 
    # if user.nomeForm == fake_users_db["username"] and user.senhaForm == fake_users_db["password"]:
@@ -105,13 +81,12 @@ async def verificar_user( user: User, session : SessionDep):
 
 
 @app.post("/registrar")
-def registrar_usuario(dados: UsuarioCreate, session : SessionDep) -> UsuarioCreate:
-    session.add(dados)
-    session.commit()
-    session.refresh(dados)
-    return dados
-    
-
+def registrar_usuario(dados: UsuarioCreate, db: Session = Depends(get_db)):
+    usuario = UsuarioCreate(**dados.dict())  # Converte os dados para o modelo Usuario
+    db.add(usuario)
+    db.commit()
+    db.refresh(usuario)
+    return usuario
 
 
 if __name__ == "__main__":

@@ -17,23 +17,25 @@ document.getElementById("registrar").addEventListener("submit", async function (
       confirmarsenha = document.getElementById("confirmarsenha").value;
 
       
-
-      const response = await fetch('https://rowan-prickle-fenugreek.glitch.me/registrar', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',  // Indicando que estamos enviando JSON
-        },
-        body: JSON.stringify({
-            "usuario": nome,
-            "email": email,
-            "telefone": telefone,
-            "cpf_cnpj": cpf_cnpj,
-            "senha": senha
+      if (senha == confirmarsenha){
+        const response = await fetch('http://127.0.0.1:8000/registrar', {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',  // Indicando que estamos enviando JSON
+          },
+          body: JSON.stringify({
+              "usuario": nome,
+              "email": email,
+              "telefone": telefone,
+              "cpf_cnpj": cpf_cnpj,
+              "senha": senha
+          })
         })
-      })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error("Erro:", error));
-
-
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error("Erro:", error));
+      
+    } else {
+        console.log('Senhas não correspondem');
+    }
 })
