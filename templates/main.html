@@ -7,37 +7,57 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
     <link rel="stylesheet" href="/static/css/index.css">
     <!--<link rel="shortcut icon" type="imagex/png" href="/static/img/logo.png">-->
-    
+    <style>
+        main {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          background-color: #f4f4f4;
+        }
+        #pdf-container {
+          width: 80%;
+          height: 90%;
+          overflow-y: auto; /* Ativa a rolagem vertical */
+          border: 2px solid #ccc;
+          background-color: white;
+        }
+        canvas {
+          display: block;
+          margin: auto;
+          margin-bottom: 20px; /* Espaço entre as páginas */
+          border-bottom: 1px solid #ddd;
+        }
+      </style>
 </head>
+
 <header>
 <nav>
     <button id="logout" class="logout"><a href="/logout">sair</a></button>
     <h2>Olá &nbsp<span id="nomeUsuario"></span></h2>
     <section>
-    <input id="valor" type="number">
-    <button id="commit">Pesquisar</button>
+    <input id="imput_value" type="number">
+    <button onclick = valueByinput()>Pesquisar</button>
     </section>
    
 </nav>
 </header>
 
 <body>
-       
-   
-   
-<div class="pdf-container" style="width: 90%; height: 80%;">
-    <canvas id="pdf-canvas" width="500" height="500">
-        
-    </canvas>
-</div>
 
+   <main>
+    <div class="menu_botoes">
+        <button id="decrementar" onclick=decrementar()>&lt;</button>
+    </div>
+    <div id="pdf-container"></div>
 <div class="menu_botoes">
-
-    <button id="decrementar">&lt;</button>
-<p style="color:white"  id="displayValor">0</p>
-<button id="incrementar">&gt;</button>
-
+    <button id="incrementar" onclick=incrementar()>&gt;</button>
 </div>
+<p style="color:black"  id="displayValor">0</p>
+</main>
 
 <script src="/static/js/scripts.js"></script>
 

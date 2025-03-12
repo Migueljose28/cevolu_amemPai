@@ -2,11 +2,9 @@ from fastapi import FastAPI,  Depends, HTTPException, Query
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-
 from sqlmodel import Session, SQLModel
 from db import  get_db, engine
 from models import UsuarioCreate
-
 
 
 class User(BaseModel):
@@ -46,10 +44,10 @@ fake_users_db = {
 
 #Rotas
 @app.get("/")
-def home():
+async def home():
     return JSONResponse(content={"redirect_url": "http://127.0.0.1:5500/templates/login.html"})
 
-@app.get("/redirect")
+@app.get("/registrar")
 def get_redirect():
     return JSONResponse(content={"redirect_url": "http://127.0.0.1:5500/templates/registrar.html"})
 
@@ -70,18 +68,8 @@ async def verificar_user(user: User, session: Session = Depends(get_db)):
         return {"mensagem": "Os Campos estão vazios"}
 
 
-   # if user.nomeForm == fake_users_db["username"] and user.senhaForm == fake_users_db["password"]:
-   #     return JSONResponse(content={"redirect_url": "http://127.0.0.1:5500/templates/main.html", "user": user.nomeForm, "token": "token"})
-
-   # elif user.nomeForm == fake_users_db["username"] and user.senhaForm != fake_users_db["password"]:
-    #    return {"mensagem": "Senha incorreta"}
-    
-   # else:
-   #     return {"mensagem":"Usuario inexistente"}
-
-
 @app.post("/registrar")
-def registrar_usuario(dados: UsuarioCreate, db: Session = Depends(get_db)):
+async def registrar_usuario(dados: UsuarioCreate, db: Session = Depends(get_db)):
     usuario = UsuarioCreate(**dados.dict())  # Converte os dados para o modelo Usuario
     db.add(usuario)
     db.commit()
@@ -89,9 +77,3 @@ def registrar_usuario(dados: UsuarioCreate, db: Session = Depends(get_db)):
     return usuario
 
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000, reload=True)
-
-
-#uvicorn app:app --reload
