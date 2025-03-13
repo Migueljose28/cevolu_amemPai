@@ -4,7 +4,6 @@ window.onload = function() {
   }, 1000); // Atraso de 1 segundo
 };
 
-
 document.getElementById("loginForm").addEventListener("submit", async function (event) {
   event.preventDefault(); // Impede o envio tradicional do formulário
   
@@ -12,6 +11,12 @@ document.getElementById("loginForm").addEventListener("submit", async function (
   senha = document.getElementById("senhaForm").value;
   number = 3
   
+if(nome == "" || senha == ""){
+  document.getElementById("alert").innerHTML = "Preencha todos os campos";
+  document.getElementById("box-alert").style.display = "flex";
+  return;
+
+}else{
      const response = await fetch("http://127.0.0.1:8000/login", {
       method: 'post',
       headers: {
@@ -32,7 +37,10 @@ document.getElementById("loginForm").addEventListener("submit", async function (
           LocalStorage.setItem("usuario", result.user);    
       }
       else {
-          console.log('Login successful:', result)}; 
+        //Usuario inexiste ou senha incorreta
+          document.getElementById("alert").innerHTML = result.mensagem;
+          document.getElementById("box-alert").style.display = "flex";
+          console.log('Login failed:', result)}; 
       
       console.log('Login successful:', result);
       
@@ -42,4 +50,8 @@ document.getElementById("loginForm").addEventListener("submit", async function (
       console.error('Login failed:', response.statusText);
     }
 
-  })
+  }})
+
+function close_box_message(){
+    document.getElementById("box-alert").style.display = "none";
+}

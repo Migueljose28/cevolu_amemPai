@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/static/css/login.css">
     <title>Login</title>
     <link rel="shortcut icon" type="imagex/png" href="/static/img/logo.png">
-  
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
 <body>
     <div class="main-login">
@@ -36,6 +36,22 @@
                 
         </div>
     </div>
+    <div  id="box-alert" class="fixed flex inset-0  items-center justify-center ">
+        <!--Caixa de mensagem-->
+        <div class="bg-white p-6 rounded-2xl shadow-xl text-center w-80">
+            <div class = " flex flex-row">
+                <section  class="h-5 w-5  mr-1 bg-red-500 rounded-2xl"></section>
+                <section class="h-5 w-5   mr-1 bg-yellow-500 rounded-2xl"></section>
+                <section class="h-5 w-5  bg-green-500 rounded-2xl"></section>
+            </div>
+    
+            <h2 class="text-xl font-semibold mb-2 ">Error</h2>
+            <p id="alert" class="text-red-700 font-semibold mb-6 "></p>
+            <button type="button" class="bg-red-500 p-3 rounded-2xl shadow-xl text-center hover:bg-red-800 w-full " onclick="close_box_message()">Fechar</button>
+        </div>
+    </div>
+
+
 </body>
 <script src="/static/js/login.js">
     

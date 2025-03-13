@@ -10,6 +10,9 @@ body {
     transition: opacity 2s ease-in-out; 
 }
 
+#box-alert{
+    display: none;
+}
 
 .rigth-login {
     width: 50vw;
@@ -137,7 +140,7 @@ a {
 
     .main-login{
         display: flex;
-       
+        margin: auto;
         flex-direction: column;
     }
 

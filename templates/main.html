@@ -6,7 +6,8 @@
     <title>Banco de Taleto - C´Evolu</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
     <link rel="stylesheet" href="/static/css/index.css">
-    <!--<link rel="shortcut icon" type="imagex/png" href="/static/img/logo.png">-->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+   <link rel="shortcut icon" type="imagex/png" href="/static/img/logo.png">
     <style>
         main {
           font-family: Arial, sans-serif;
@@ -37,9 +38,9 @@
 <header>
 <nav>
     <button id="logout" class="logout"><a href="/logout">sair</a></button>
-    <h2>Olá &nbsp<span id="nomeUsuario"></span></h2>
+    <h2>Bem Vindo a C`Evolu &nbsp<span id="nomeUsuario"></span></h2>
     <section>
-    <input id="imput_value" type="number">
+    <input id="imput_value" type="number" class="bg-white">
     <button onclick = valueByinput()>Pesquisar</button>
     </section>
    
