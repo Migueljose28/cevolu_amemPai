@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/registrar.css">
+    <title>Registrar</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="shortcut icon" type="imagex/png" href="/static/img/logo.png">
+</head>
+<body>
+    <div class="main-login">
+        <div class="left-login">
+            <img src="/static/img/logo.png" class="left-login-img" alt="logo">
+        </div>
+
+        <div class="right-login">
+            <div class="card-login">
+                <h1 >Cadastre-se</h1>
+                <form id="registrar">
+                    <div class="form-container">
+                        <div>
+                        <div class="textfield">
+                          
+                            <input type="text" name="nomeForm" placeholder="Usuário" id="nomeForm">
+                        </div>
+                        <div class="textfield">
+                           
+                            <input type="email" name="emailForm" placeholder="Email" id="emailForm">
+                        </div>
+                   
+                        <div class="textfield">
+                            
+                            <input type="text" name="telefoneForm" placeholder="Telefone" id="telefoneForm">
+                        </div>
+                        
+                        </div>
+                        <div>
+                        <div class="textfield">
+                           
+                            <input type="text" name="cpfForm" placeholder="CPF OU CNPJ" id="cpfForm">
+                        </div>
+                        <div class="textfield">
+                            
+                            <input type="password" name="senhaForm" placeholder="Senha" id="senhaForm">
+                        </div>
+                        <div class="textfield">
+                           
+                            <input type="password" name="confirmarSenhaForm" placeholder="confirmar Senha" id="confirmarsenha">
+                        </div>
+                    </div>
+                    </div>
+                    <button class="btn-login" type="submit" >Registrar</button>
+
+                    <a class="" href="/templates/login.html">Login</a>
+                </form>
+            </div>
+        </div>
+        </div>
+
+        
+<div  id="box-alert" class="fixed flex inset-0  items-center justify-center ">
+    <!--Caixa de mensagem-->
+    <div class="bg-sky-100 p-6 rounded-2xl shadow-xl text-center w-80">
+        <div class = " flex flex-row">
+            <section  class="h-5 w-5  mr-1 bg-red-500 rounded-2xl"></section>
+            <section class="h-5 w-5   mr-1 bg-yellow-500 rounded-2xl"></section>
+            <section class="h-5 w-5  bg-green-500 rounded-2xl"></section>
+        </div>
+
+        <h2 id="title_box_alert" class="text-xl font-semibold mb-2 "></h2>
+        <p id="alert" class="text-red-700 font-semibold mb-6 "></p>
+        <button id="button_box_alert" type="button" class="bg-red-500 p-3 rounded-2xl shadow-xl text-center hover:bg-red-800 w-full " onclick="close_box_message()">Fechar</button>
+    </div>
+</div>
+</body>
+
+<script src="/static/js/registrar.js"></script>
+<script>
+
+
+
+</script>
+</html>
